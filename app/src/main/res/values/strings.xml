@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MBGA</string>
+    <string name="xposed_desc">Make Bilibili Great Again!</string>
+    <string name="about_module">此模块使用 YukiHookAPI 构建。\n了解更多 https://github.com/HighCapable/YuKiHookAPI</string>
+    <string name="app_settings_title">设置</string>
+    <string name="app_first_launch_message">模块第一次启动，已加载默认设置，要回到B站开始浏览还是留在设置页面再看看？如果你反复看到这个弹窗，请提issue</string>
+    <string name="app_first_launch_goback">回到B站</string>
+    <string name="app_first_launch_stay">留在这</string>
+
+    <string name="bili_need_restart_message">您修改的设置中有需要重启B站才能生效的，请重启B站</string>
+
+    <string name="setting_tabs">底部Tab</string>
+    <string name="setting_tabs_hide">隐藏“%1$s”</string>
+
+    <string name="setting_home_page">首页</string>
+    <string name="setting_home_no_portrait_player">禁止竖屏播放器</string>
+    <string name="setting_home_no_portrait_player_on">打开竖屏视频时使用传统播放器</string>
+    <string name="setting_home_no_portrait_player_off">打开竖屏视频时使用新播放器（单击暂停的）</string>
+    <string name="setting_home_no_auto_refresh">禁止自动刷新</string>
+    <string name="setting_home_no_auto_refresh_on">切后台过一段时间回来保持之前看到的地方</string>
+    <string name="setting_home_no_auto_refresh_off">切后台过一段时间回来会自动刷新</string>
+    <string name="setting_home_no_feed_top_clean">禁止刷新时清空之前的内容</string>
+    <string name="setting_home_no_feed_top_clean_on">刷新时会保留之前的内容（仅最上方一页）</string>
+    <string name="setting_home_no_feed_top_clean_off">点击Tab刷新时，可能会清空之前列表中的内容</string>
+    <string name="setting_home_only_ugc">只显示UGC</string>
+    <string name="setting_home_only_ugc_on">只展示用户上传的作品</string>
+    <string name="setting_home_only_ugc_off">首页推荐视频列表原封不动</string>
+    <string name="setting_home_duration_min">内容最短时长</string>
+    <string name="setting_home_duration_min_hint">时长过短的内容会被过滤掉</string>
+    <string name="setting_home_duration_min_dialog_message">单位为秒，时长达不到的视频会被过滤掉，不填或填0禁用</string>
+    <string name="setting_home_pure_vid_card">干净的视频卡片</string>
+    <string name="setting_home_pure_vid_card_on">只展示视频标题和UP名称</string>
+    <string name="setting_home_pure_vid_card_off">展示“竖屏”“1万点赞”“已关注”这些</string>
+    <string name="setting_home_dense_vid_card">强制视频封面比例为16:9</string>
+    <string name="setting_home_vid_filter_keyword">推荐视频关键词过滤</string>
+    <string name="setting_home_vid_filter_keyword_dialog_message">每行一个关键词，出现了关键词的推荐视频会被过滤。</string>
+
+    <string name="setting_search_page">搜索页</string>
+    <string name="setting_search_no_trending">隐藏热搜</string>
+    <string name="setting_search_no_recommend">隐藏搜索发现</string>
+    <string name="setting_search_no_history">隐藏搜索历史</string>
+    <string name="setting_search_no_default_words">禁止在搜索框内推荐搜索词</string>
+
+    <string name="setting_vid_player">播放器</string>
+    <string name="setting_vid_player_no_activity_meta">干掉云视听小电视</string>
+    <string name="setting_vid_player_no_command_dms">干掉投票、关注等弹窗（待细分）</string>
+    <string name="setting_vid_player_no_segmented_section">禁止默认开启章节进度条</string>
+    <string name="setting_vid_player_fullscreen_when_multi_window">允许在小窗/分屏模式下全屏播放</string>
+    <string name="setting_vid_player_no_portrait_player">干掉竖屏全屏按钮</string>
+    <string name="setting_vid_player_no_portrait_player_on">只展示传统全屏按钮</string>
+    <string name="setting_vid_player_no_portrait_player_off">展示3.19.0新出的竖屏全屏按钮</string>
+    <string name="setting_vid_player_no_dm_click">不让点击弹幕</string>
+    <string name="setting_vid_player_no_dm_click_on">点击弹幕时什么事也不会发生，但同时“空降”弹幕也会无法点击（投票、关注这些应该也都点不了了）</string>
+    <string name="setting_vid_player_no_dm_click_off">点击弹幕时会弹出“点赞、复制、举报”浮窗</string>
+    <string name="setting_vid_player_no_qoe">禁止展示反馈弹窗</string>
+    <string name="setting_vid_player_no_qoe_hint">禁止展示“对音量均衡功能满意吗”此类的弹窗</string>
+
+    <string name="setting_vid_detail">视频详情页</string>
+    <string name="setting_vid_detail_no_label">干掉标题左侧标签</string>
+    <string name="setting_vid_detail_no_label_hint">常见标签有：热门、活动，点击会打开新页面</string>
+    <string name="setting_vid_detail_no_short_link">让分享链接更纯粹</string>
+    <string name="setting_vid_detail_no_short_link_on">https://b23.tv/av10492</string>
+    <string name="setting_vid_detail_no_short_link_off">原始B站分享链接，可能有追踪参数</string>
+    <string name="setting_vid_detail_no_relates">干掉相关视频</string>
+    <string name="setting_vid_detail_hide_status_bar">隐藏系统状态栏</string>
+    <string name="setting_vid_detail_hide_status_bar_hint">可从顶部下划临时展示状态栏</string>
+
+    <string name="setting_vid_comment">视频评论区</string>
+    <string name="setting_vid_comment_disable">完全隐藏评论区</string>
+    <string name="setting_vid_comment_no_quick_reply">禁止快速回复</string>
+    <string name="setting_vid_comment_no_quick_reply_on">点击评论文字什么也不会发生</string>
+    <string name="setting_vid_comment_no_quick_reply_off">点击评论文字会弹出键盘进行回复</string>
+    <string name="setting_vid_comment_no_vote">禁止展示投票</string>
+    <string name="setting_vid_comment_no_vote_on">评论区不会展示投票</string>
+    <string name="setting_vid_comment_no_vote_off">有些视频的评论区会有投票</string>
+    <string name="setting_vid_comment_no_follow">禁止展示关注</string>
+    <string name="setting_vid_comment_no_follow_on">评论区不会展示关注按钮</string>
+    <string name="setting_vid_comment_no_follow_off">有些评论区会有关注按钮</string>
+    <string name="setting_vid_comment_no_search">禁止展示评论内关键词搜索</string>
+    <string name="setting_vid_comment_no_search_on">评论内没有关键词高亮搜索（视频链接不算）</string>
+    <string name="setting_vid_comment_no_search_off">评论内关键词会高亮，点击会进入搜索页</string>
+    <string name="setting_vid_comment_no_empty_page">禁止一键发送评论</string>
+    <string name="setting_vid_comment_no_empty_page_on">视频没有评论时，什么都不展示</string>
+    <string name="setting_vid_comment_no_empty_page_off">视频没有评论时，展示“发一条xxx吧”“说点别的”“一键发送”</string>
+    <string name="setting_vid_comment_no_qoe">禁止展示反馈问卷</string>
+    <string name="setting_vid_comment_no_operation">禁止展示评论区顶部推广内容</string>
+    <string name="setting_vid_comment_no_operation_hint">如“大家都在搜”、“看看UP主写了什么”</string>
+    <string name="setting_vid_comment_filter_keyword">关键词过滤</string>
+    <string name="setting_vid_comment_filter_keyword_hint">仅过滤评论，不过滤评论下方的回复</string>
+    <string name="setting_vid_comment_filter_keyword_dialog_message">每行一个关键词，出现了关键词的评论会被过滤。</string>
+
+    <string name="setting_mine">我的</string>
+    <string name="setting_mine_add_search">增加搜索入口</string>
+    <string name="setting_mine_add_search_hint">在“更多服务”顶部添加一个搜索入口</string>
+    <string name="setting_mine_add_im">增加消息入口</string>
+    <string name="setting_mine_add_im_hint">在“更多服务”顶部添加一个消息入口</string>
+    <string name="setting_mine_remove_vip">隐藏大会员入口</string>
+    <string name="setting_mine_keep_vip_space">保留大会员入口的空白区域</string>
+    <string name="setting_mine_keep_vip_space_on">隐藏大会员入口后下面的内容位置保持不变</string>
+    <string name="setting_mine_keep_vip_space_off">隐藏大会员入口后下面的内容会上移</string>
+
+    <string name="setting_dev">开发者选项（会些微影响性能）</string>
+    <string name="setting_dev_log_dm_view">记录DmViewReply</string>
+    <string name="setting_dev_log_main_list">记录MainListReply</string>
+    <string name="setting_dev_log_bottom_tabs">记录底部Tab日志</string>
+    <string name="setting_dev_log_feed_removal">记录首页信息流过滤日志</string>
+
+    <string name="common_search">搜索</string>
+    <string name="common_got_it">知道了</string>
+    <string name="common_im">消息</string>
+</resources>

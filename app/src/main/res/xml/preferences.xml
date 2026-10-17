@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        app:key="bottom_tabs_category"
+        app:title="@string/setting_tabs">
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        app:title="@string/setting_home_page">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="home_disable_portrait"
+            app:summaryOff="@string/setting_home_no_portrait_player_off"
+            app:summaryOn="@string/setting_home_no_portrait_player_on"
+            app:title="@string/setting_home_no_portrait_player" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="home_disable_auto_refresh"
+            app:summaryOff="@string/setting_home_no_auto_refresh_off"
+            app:summaryOn="@string/setting_home_no_auto_refresh_on"
+            app:title="@string/setting_home_no_auto_refresh" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="home_disable_feed_top_clean"
+            app:summaryOff="@string/setting_home_no_feed_top_clean_off"
+            app:summaryOn="@string/setting_home_no_feed_top_clean_on"
+            app:title="@string/setting_home_no_feed_top_clean" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="home_show_only_ugc"
+            app:summaryOff="@string/setting_home_only_ugc_off"
+            app:summaryOn="@string/setting_home_only_ugc_on"
+            app:title="@string/setting_home_only_ugc" />
+        <top.trangle.mbga.views.IntEditTextPreference
+            app:defaultValue="0"
+            app:dialogMessage="@string/setting_home_duration_min_dialog_message"
+            app:iconSpaceReserved="false"
+            app:key="home_duration_min"
+            app:summary="@string/setting_home_duration_min_hint"
+            app:title="@string/setting_home_duration_min" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="home_pure_vid_card"
+            app:summaryOff="@string/setting_home_pure_vid_card_off"
+            app:summaryOn="@string/setting_home_pure_vid_card_on"
+            app:title="@string/setting_home_pure_vid_card" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="home_dense_vid_card"
+            app:title="@string/setting_home_dense_vid_card" />
+        <top.trangle.mbga.views.KeywordListPreference
+            app:iconSpaceReserved="false"
+            app:key="home_vid_filter_keyword"
+            app:dialogMessage="@string/setting_home_vid_filter_keyword_dialog_message"
+            app:title="@string/setting_home_vid_filter_keyword" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/setting_search_page"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:key="search_disable_trending"
+            android:title="@string/setting_search_no_trending"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="search_disable_history"
+            android:title="@string/setting_search_no_history"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="search_disable_recommend"
+            android:title="@string/setting_search_no_recommend"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:defaultValue="false"
+            android:key="search_disable_default_words"
+            android:title="@string/setting_search_no_default_words"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/setting_vid_player"
+        app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:title="@string/setting_vid_player_no_activity_meta"
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_activity_meta" />
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:title="@string/setting_vid_player_no_command_dms"
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_command_dms" />
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:title="@string/setting_vid_player_no_segmented_section"
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_segmented_section" />
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:title="@string/setting_vid_player_fullscreen_when_multi_window"
+            app:iconSpaceReserved="false"
+            app:key="vid_player_fullscreen_when_multi_window" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_portrait"
+            app:summaryOff="@string/setting_vid_player_no_portrait_player_off"
+            app:summaryOn="@string/setting_vid_player_no_portrait_player_on"
+            app:title="@string/setting_vid_player_no_portrait_player" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_dm_click"
+            app:summaryOff="@string/setting_vid_player_no_dm_click_off"
+            app:summaryOn="@string/setting_vid_player_no_dm_click_on"
+            app:title="@string/setting_vid_player_no_dm_click" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="vid_player_disable_qoe"
+            app:summary="@string/setting_vid_player_no_qoe_hint"
+            app:title="@string/setting_vid_player_no_qoe" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/setting_vid_detail"
+        app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:title="@string/setting_vid_detail_no_label"
+            app:iconSpaceReserved="false"
+            app:key="vid_detail_disable_label"
+            app:summary="@string/setting_vid_detail_no_label_hint" />
+        <SwitchPreferenceCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:defaultValue="true"
+            android:title="@string/setting_vid_detail_no_short_link"
+            app:iconSpaceReserved="false"
+            app:key="vid_detail_disable_short_link"
+            app:summaryOff="@string/setting_vid_detail_no_short_link_off"
+            app:summaryOn="@string/setting_vid_detail_no_short_link_on" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="vid_detail_no_relates"
+            app:title="@string/setting_vid_detail_no_relates" />
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="vid_detail_hide_status_bar"
+            app:title="@string/setting_vid_detail_hide_status_bar"
+            app:summary="@string/setting_vid_detail_hide_status_bar_hint" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        app:title="@string/setting_vid_comment">
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_disable"
+            app:title="@string/setting_vid_comment_disable" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_quick_reply"
+            app:summaryOff="@string/setting_vid_comment_no_quick_reply_off"
+            app:summaryOn="@string/setting_vid_comment_no_quick_reply_on"
+            app:title="@string/setting_vid_comment_no_quick_reply" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_vote"
+            app:summaryOff="@string/setting_vid_comment_no_vote_off"
+            app:summaryOn="@string/setting_vid_comment_no_vote_on"
+            app:title="@string/setting_vid_comment_no_vote" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_follow"
+            app:summaryOff="@string/setting_vid_comment_no_follow_off"
+            app:summaryOn="@string/setting_vid_comment_no_follow_on"
+            app:title="@string/setting_vid_comment_no_follow" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_search"
+            app:summaryOff="@string/setting_vid_comment_no_search_off"
+            app:summaryOn="@string/setting_vid_comment_no_search_on"
+            app:title="@string/setting_vid_comment_no_search" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_empty_page"
+            app:summaryOff="@string/setting_vid_comment_no_empty_page_off"
+            app:summaryOn="@string/setting_vid_comment_no_empty_page_on"
+            app:title="@string/setting_vid_comment_no_empty_page" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_qoe"
+            app:title="@string/setting_vid_comment_no_qoe" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_no_operation"
+            app:summary="@string/setting_vid_comment_no_operation_hint"
+            app:title="@string/setting_vid_comment_no_operation" />
+        <top.trangle.mbga.views.KeywordListPreference
+            app:iconSpaceReserved="false"
+            app:key="vid_comment_filter_keyword"
+            app:dialogMessage="@string/setting_vid_comment_filter_keyword_dialog_message"
+            app:summary="@string/setting_vid_comment_filter_keyword_hint"
+            app:title="@string/setting_vid_comment_filter_keyword" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        app:title="@string/setting_mine">
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="mine_add_search"
+            app:summary="@string/setting_mine_add_search_hint"
+            app:title="@string/setting_mine_add_search" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="mine_add_im"
+            app:summary="@string/setting_mine_add_im_hint"
+            app:title="@string/setting_mine_add_im" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="mine_remove_vip"
+            app:title="@string/setting_mine_remove_vip" />
+        <SwitchPreferenceCompat
+            android:dependency="mine_remove_vip"
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="mine_keep_vip_space"
+            app:summaryOff="@string/setting_mine_keep_vip_space_off"
+            app:summaryOn="@string/setting_mine_keep_vip_space_on"
+            app:title="@string/setting_mine_keep_vip_space" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false"
+        app:title="@string/setting_dev">
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="dev_log_dm_view"
+            app:title="@string/setting_dev_log_dm_view" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="dev_log_main_list"
+            app:title="@string/setting_dev_log_main_list" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="dev_log_bottom_tabs"
+            app:title="@string/setting_dev_log_bottom_tabs" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="dev_log_feed_removal"
+            app:title="@string/setting_dev_log_feed_removal" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

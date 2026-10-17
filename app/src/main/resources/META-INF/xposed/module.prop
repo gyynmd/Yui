@@ -1,0 +1,18 @@
+# libxposed module metadata (Properties format)
+# See https://github.com/LSPosed/LSPosed/wiki/Develop-Xposed-Modules-Using-Modern-Xposed-API
+id=top.trangle.mbga
+name=MBGA
+version=1.5.0
+versionCode=170
+author=cledwynl
+description=Make Bilibili Great Again!
+
+# This module is built against, and targets, libxposed API 102
+minApiVersion=102
+targetApiVersion=102
+
+# Scope is fixed by scope.list, users should not apply the module to other apps
+staticScope=true
+
+# Keep the original behaviour when a hook throws: do not crash the host
+exceptionMode=protective

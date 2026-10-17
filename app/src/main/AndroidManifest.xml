@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+        libxposed API 102 module.
+
+        The module is described by:
+          * android:label / android:description   -> module name and description
+          * META-INF/xposed/module.prop           -> API versions and metadata
+          * META-INF/xposed/java_init.list        -> entry classes
+          * META-INF/xposed/scope.list            -> injected packages
+        Legacy `xposedminversion` / `xposedscope` metadata is intentionally not used.
+    -->
+    <application
+        android:name=".application.DefaultApplication"
+        android:allowBackup="true"
+        android:description="@string/xposed_desc"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:targetApi="31">
+        <activity
+            android:name=".views.SettingsActivity"
+            android:exported="true"
+            android:label="@string/app_settings_title"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>

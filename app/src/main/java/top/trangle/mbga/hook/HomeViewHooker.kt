@@ -1,0 +1,219 @@
+package top.trangle.mbga.hook
+
+import top.trangle.mbga.utils.MyHooker
+import top.trangle.mbga.utils.reflectionToString
+import top.trangle.mbga.xposed.ConstructorRule
+import top.trangle.mbga.xposed.IntType
+import top.trangle.mbga.xposed.LongType
+import top.trangle.mbga.xposed.YLog
+import top.trangle.mbga.xposed.constructor
+import top.trangle.mbga.xposed.field
+import top.trangle.mbga.xposed.method
+import top.trangle.mbga.xposed.toClass
+
+object HomeViewHooker : MyHooker() {
+    override fun onHook() {
+        subHook(this::hookPortraitVideo)
+        subHook(this::hookBottomTabs)
+        subHook(this::hookAutoRefresh)
+        subHook(this::hookFeedConfig)
+        subHook(this::hookIndexFeedList)
+    }
+
+    private fun hookPortraitVideo() {
+        val clzBasicIndexItem = "com.bilibili.pegasus.api.model.BasicIndexItem".toClass()
+        val getUri = clzBasicIndexItem.method { name = "getUri" }
+
+        getUri.hook {
+            after {
+                if (!prefs.getBoolean("home_disable_portrait")) {
+                    return@after
+                }
+                val uri = result as String?
+                if (!uri.isNullOrEmpty()) {
+                    if (uri.startsWith("bilibili://story/")) {
+                        result = "bilibili://video/" + uri.substringAfter("bilibili://story/")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun hookBottomTabs() {
+        "tv.danmaku.bili.ui.main2.MainFragment\$a".toClass().method { name = "a" }.hook {
+            after {
+                (result as ArrayList<*>).removeIf { tabItem ->
+                    val item = tabItem ?: return@removeIf false
+                    val c =
+                        item.javaClass.field { name = "c" }.get(item).any()
+                            ?: return@removeIf false
+                    val tabName = c.javaClass.field { name = "b" }.get(c).string()
+                    val tabScheme = c.javaClass.field { name = "d" }.get(c).string()
+
+                    if (prefs.getBoolean("dev_log_bottom_tabs")) {
+                        YLog.debug("首页底部Tab: $tabName -> $tabScheme ${reflectionToString(c)}")
+                    }
+
+                    prefs.getBoolean("tabs_disable#$tabScheme")
+                }
+            }
+        }
+    }
+
+    private fun hookAutoRefresh() {
+        val clzConfig = "com.bilibili.pegasus.api.modelv2.Config".toClass()
+
+        arrayOf(
+            "getAutoRefreshTimeByActiveInterval",
+            "getAutoRefreshTimeByAppearInterval",
+            "getAutoRefreshTimeByBehaviorInterval",
+        ).forEach { methodName ->
+            clzConfig.method { name = methodName }
+                .hook {
+                    replaceAny {
+                        if (!prefs.getBoolean("home_disable_auto_refresh")) {
+                            callOriginal()
+                        } else {
+                            -1L
+                        }
+                    }
+                }
+        }
+
+        val clzIndexFeedFragmentV2 =
+            "com.bilibili.pegasus.promo.index.IndexFeedFragmentV2".toClass()
+        clzIndexFeedFragmentV2.method {
+            modifiers { isStatic }
+            param {
+                it.size == 6 && it[0] == clzIndexFeedFragmentV2 && it[1] == IntType && it[2] == LongType && it[4] == IntType
+            }
+        }.hook {
+            replaceUnit {
+                val isByOnResume =
+                    Throwable().stackTrace.any {
+                        it.methodName.contains("onResume")
+                    }
+                if (!isByOnResume || !prefs.getBoolean("home_disable_auto_refresh")) {
+                    callOriginal()
+                }
+            }
+        }
+    }
+
+    private fun hookFeedConfig() {
+        val clzIndexFragmentV2 = "com.bilibili.pegasus.promo.index.IndexFeedFragmentV2".toClass()
+
+        val clzConfig = "com.bilibili.pegasus.api.modelv2.Config".toClass()
+        val fieldFeedTopClean = clzConfig.field { name = "feedTopClean" }
+        val fieldRatio = clzConfig.field { name = "smallCoverWhRatio" }
+
+        clzIndexFragmentV2.method { param(clzConfig) }
+            .hook {
+                before {
+                    val cfg = args[0]
+                    if (prefs.getBoolean("home_disable_feed_top_clean")) {
+                        fieldFeedTopClean.get(cfg).set(0)
+                    }
+                    if (prefs.getBoolean("home_dense_vid_card")) {
+                        fieldRatio.get(cfg).set(1.77777777f)
+                    }
+                }
+            }
+    }
+
+    private fun hookIndexFeedList() {
+        val clzJsonArray = "com.alibaba.fastjson.JSONArray".toClass()
+
+        val clzBasicIndexItem = "com.bilibili.pegasus.api.model.BasicIndexItem".toClass()
+        val fieldCardGoto = clzBasicIndexItem.field { name = "cardGoto" }
+        val fieldPlayerArgs = clzBasicIndexItem.field { name = "playerArgs" }
+        val fieldArgs = clzBasicIndexItem.field { name = "args" }
+        val fieldTitle = clzBasicIndexItem.field { name = "title" }
+
+        val clzPlayerArgs = "com.bilibili.app.comm.list.common.api.model.PlayerArgs".toClass()
+        val fieldDuration = clzPlayerArgs.field { name = "fakeDuration" }
+
+        val clzArgs = "com.bilibili.pegasus.api.modelv2.Args".toClass()
+        val fieldUpName = clzArgs.field { name = "upName" }
+        val fieldUpId = clzArgs.field { name = "upId" }
+
+        val clzSmallCoverV2Item = "com.bilibili.pegasus.api.modelv2.SmallCoverV2Item".toClass()
+        val fieldRcmdReason = clzSmallCoverV2Item.field { name = "rcmdReason" }
+        val fieldGotoIcon = clzSmallCoverV2Item.field { name = "storyCardIcon" }
+        val fieldDescButton = clzSmallCoverV2Item.field { name = "descButton" }
+
+        val clzDescButton = "com.bilibili.pegasus.api.modelv2.DescButton".toClass()
+        val cntrDescButton = clzDescButton.constructor { paramCount(0) }
+        val fieldText = clzDescButton.field { name = "text" }
+        val fieldUri = clzDescButton.field { name = "uri" }
+
+        "com.bilibili.pegasus.api.BaseTMApiParser".toClass()
+            .method {
+                param(clzJsonArray)
+                returnType = ArrayList::class.java
+            }
+            .hook {
+                after {
+                    val keepOnlyUgc = prefs.getBoolean("home_show_only_ugc")
+                    val durationMin = prefs.getInt("home_duration_min", 0)
+                    val filterKeywords = prefs.getStringSet("home_vid_filter_keyword") ?: emptySet()
+
+                    if (keepOnlyUgc || durationMin > 0 || filterKeywords.isNotEmpty()) {
+                        (result as ArrayList<*>).removeIf {
+                            if (keepOnlyUgc && fieldCardGoto.get(it).string() != "av") {
+                                if (prefs.getBoolean("dev_log_feed_removal")) {
+                                    YLog.debug("feed item removed because it's not ugc: ${reflectionToString(it)}")
+                                }
+                                return@removeIf true
+                            }
+                            if (durationMin > 0) {
+                                val playerArgs =
+                                    fieldPlayerArgs.get(it).any()
+                                        ?: return@removeIf false
+                                val duration =
+                                    fieldDuration.get(playerArgs).int()
+                                if (duration < durationMin) {
+                                    if (prefs.getBoolean("dev_log_feed_removal")) {
+                                        YLog.debug("feed item removed because it's too short: ${reflectionToString(it)}")
+                                    }
+                                    return@removeIf true
+                                }
+                            }
+                            if (filterKeywords.isNotEmpty()) {
+                                val title = fieldTitle.get(it).string()
+                                filterKeywords.forEach { keyword ->
+                                    if (title.contains(keyword)) {
+                                        if (prefs.getBoolean("dev_log_feed_removal")) {
+                                            YLog.debug("feed item removed because keyword $keyword: ${reflectionToString(it)}")
+                                        }
+                                        return@removeIf true
+                                    }
+                                }
+                            }
+                            false
+                        }
+                    }
+
+                    val pureVidCard = prefs.getBoolean("home_pure_vid_card")
+                    if (pureVidCard) {
+                        (result as List<*>).forEach {
+                            if (clzSmallCoverV2Item.isInstance(it)) {
+                                fieldRcmdReason.get(it).setNull()
+                                fieldGotoIcon.get(it).setNull()
+                                val args = fieldArgs.get(it).any()
+                                val upName = fieldUpName.get(args).string()
+                                val upId = fieldUpId.get(args).long()
+                                val descButton = fieldDescButton.get(it)
+                                if (descButton.any() == null) {
+                                    val newBtn = cntrDescButton.give()?.newInstance<Any?>()
+                                    fieldText.get(newBtn).set(upName)
+                                    fieldUri.get(newBtn).set("bilibili://space/$upId")
+                                    descButton.set(newBtn)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    }
+}
